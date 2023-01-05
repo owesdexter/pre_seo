@@ -38,18 +38,11 @@ export default function Home({ cur, base, price }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // console.log("");
   // console.log("---------- getServerSideProps ----------");
-  // console.log(`params`, params);
   let price = "0";
   const { cur, base } = params ?? {};
   try {
     const { data } = await getLatestPrice();
-    price = data[`${cur}/${base}`].last_price;
-    // if (status === 200) {
-    // console.log(data[`${cur}/${base}`]);
-    // price = attachment?.length
-    //   ? attachment[attachment.length - 1].current
-    //   : price;
-    // }
+    price = data ? data[`${cur}/${base}`].last_price : "0";
   } catch (err) {
     console.log(err);
   }
