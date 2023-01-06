@@ -1,6 +1,6 @@
 //pages/sitemap.xml.js
 import { getLatestPrice } from "@/api";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 const THIS_SITE_URL = "https://pre-seo.vercel.app";
 
 function generateSiteMap(data: string[]) {
@@ -11,6 +11,7 @@ function generateSiteMap(data: string[]) {
          (el) => `
        <url>
            <loc>${`${THIS_SITE_URL}/trade/${el}`}</loc>
+           <lastmod>2021-01-06</lastmod>
        </url>
      `
        )
@@ -19,6 +20,7 @@ function generateSiteMap(data: string[]) {
  `;
 }
 
+// Default export to prevent next.js errors
 function SiteMap() {
   return null;
 }
