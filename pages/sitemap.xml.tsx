@@ -1,17 +1,19 @@
-//pages/sitemap.xml.js
 import { getLatestPrice } from "@/api";
-import { GetStaticProps, GetServerSideProps } from "next";
-const THIS_SITE_URL = "https://pre-seo.vercel.app";
+import { GetServerSideProps } from "next";
 
 function generateSiteMap(data: string[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>${process.env.HOST}</loc>
+        <lastmod>2021-01-07</lastmod>
+      </url>
      ${data
        .map(
          (el) => `
        <url>
-           <loc>${`${THIS_SITE_URL}/trade/${el}`}</loc>
-           <lastmod>2021-01-06</lastmod>
+          <loc>${`${process.env.HOST}/trade/${el}`}</loc>
+          <lastmod>2021-01-07</lastmod>
        </url>
      `
        )

@@ -8,7 +8,7 @@ import qs from "qs";
 const FORBID_AUTH_LIST = [`/quote/klineHistory`, `/quote/getKline`];
 
 const request = axios.create({
-  baseURL: "https://ace.io/polarisex/oapi/v2",
+  baseURL: process.env.OPEN_API_URL,
   timeout: 20 * 1000,
 });
 

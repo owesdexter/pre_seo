@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { getLatestPrice } from "@/api";
 import { GetServerSideProps } from "next";
+import CommonHead from "@/components/layout/head";
 
 type Props = {
   price: string;
@@ -8,34 +9,29 @@ type Props = {
   base: string;
 };
 
-export default function Home({ cur, base, price }: Props) {
+export default function CtRel({ cur, base, price }: Props) {
   const curRel = `${cur}/${base}`;
+  const title = `${curRel} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
 
   return (
     <>
-      <Head>
-        <title>{`${curRel} | ${price} | 阿德虛擬貨幣交易所`}</title>
-        <meta
-          name="description"
-          content={`${curRel} | ${price} | 阿德虛擬貨幣交易所`}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="google-site-verification"
-          content="oQSbYUy8YC6-tA_NzADuXGrQ5Mqje2Ln9wBj77n2PPc"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CommonHead title={title} description={title}>
+        <>
+          <meta
+            name="description"
+            content={`${process.env.NEXT_PUBLIC_TITLE}`}
+          />
+          <title>{`${curRel} | ${price} | 阿德虛擬貨幣交易所`}</title>
+        </>
+      </CommonHead>
       <main className="main">
-        <h1>{`${curRel} | ${price} | 阿德虛擬貨幣交易所`}</h1>
+        <h1>{title}</h1>
       </main>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  // console.log("");
-  // console.log("---------- getServerSideProps ----------");
   let price = "0";
   const { cur, base } = params ?? {};
   try {
