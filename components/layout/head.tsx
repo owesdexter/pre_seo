@@ -16,9 +16,9 @@ const Head = ({ title, description, children }: TPropType) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta
         name="google-site-verification"
-        content={process.env.GOOGLE_SITE_VERIFICATION}
+        content={`${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`}
       />
-      <link rel="canonical" href={process.env.HOST} />
+      <link rel="canonical" href={process.env.NEXT_PUBLIC_HOST} />
       {children}
     </NextHead>
   );
