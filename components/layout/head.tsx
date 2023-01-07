@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import NextHead from "next/head";
 
 type TPropType = {
   title?: string;
@@ -9,7 +10,7 @@ type TPropType = {
 const Head = ({ title, description, children }: TPropType) => {
   const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
   return (
-    <>
+    <NextHead>
       <title>{title ?? websiteTitle}</title>
       <meta name="description" content={description ?? websiteTitle} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +20,7 @@ const Head = ({ title, description, children }: TPropType) => {
       />
       <link rel="canonical" href={`${process.env.HOST}`} />
       {children}
-    </>
+    </NextHead>
   );
 };
 
