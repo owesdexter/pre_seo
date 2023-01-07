@@ -5,6 +5,7 @@ const isDev = process.env.NODE_ENV !== "production";
 
 const server = next({
   dev: isDev,
+  //location of .next generated after running -> yarn build
   conf: { distDir: ".next" },
 });
 

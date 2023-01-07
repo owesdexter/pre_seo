@@ -9,10 +9,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="google-site-verification"
-          content="oQSbYUy8YC6-tA_NzADuXGrQ5Mqje2Ln9wBj77n2PPc"
+          content="WjmVbeylZsRzN_cs6eE1WK2kn_CUKQzv5oKvquQw-30"
         />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-        <link rel="canonical" href="https://pre-seo.vercel.app" />
+        <link rel="canonical" href="pre-seo-ace-test.firebaseapp.com" />
       </Head>
       <main className="title">
         <h1>阿德虛擬貨幣交易所 首頁</h1>
