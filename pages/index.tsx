@@ -1,18 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { getLatestPrice } from "@/api";
-import { GetServerSideProps } from "next";
-import { useEffect } from "react";
 
-type Props = {
-  price: string;
-};
-
-export default function Home({ price }: Props) {
-  // useEffect(() => {
-  //   window.location.href = "https://ace.io/";
-  // }, []);
+export default function Home() {
   return (
     <>
       <Head>
@@ -23,26 +11,12 @@ export default function Home({ price }: Props) {
           name="google-site-verification"
           content="oQSbYUy8YC6-tA_NzADuXGrQ5Mqje2Ln9wBj77n2PPc"
         />
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
         <link rel="canonical" href="https://pre-seo.vercel.app" />
       </Head>
-      <main className={styles.main}>
-        <h1>我是阿德，首頁</h1>
+      <main className="title">
+        <h1>阿德虛擬貨幣交易所 首頁</h1>
       </main>
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const { data } = await getLatestPrice();
-  } catch (err) {
-    console.log(err);
-  }
-  return {
-    props: {
-      cur: "BTC",
-      base: "TWD",
-    },
-  };
-};
