@@ -18,7 +18,7 @@ const Head = ({ title, description, children }: TPropType) => {
         name="google-site-verification"
         content={process.env.GOOGLE_SITE_VERIFICATION}
       />
-      <link rel="canonical" href={`${process.env.HOST}`} />
+      <link rel="canonical" href={process.env.HOST} />
       {children}
     </NextHead>
   );

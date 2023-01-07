@@ -5,13 +5,11 @@ import CommonHead from "@/components/layout/head";
 
 type Props = {
   price: string;
-  cur: string;
-  base: string;
+  ctRelString: string;
 };
 
-export default function CtRel({ cur, base, price }: Props) {
-  const curRel = `${cur}/${base}`;
-  const title = `${curRel} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
+export default function CtRel({ ctRelString, price }: Props) {
+  const title = `${ctRelString} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
 
   return (
     <>
@@ -21,7 +19,7 @@ export default function CtRel({ cur, base, price }: Props) {
             name="description"
             content={`${process.env.NEXT_PUBLIC_TITLE}`}
           />
-          <title>{`${curRel} | ${price} | 阿德虛擬貨幣交易所`}</title>
+          <title>{title}</title>
         </>
       </CommonHead>
       <main className="main">
@@ -33,18 +31,21 @@ export default function CtRel({ cur, base, price }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   let price = "0";
-  const { cur, base } = params ?? {};
+  const { ctRel } = (params as { ctRel: string[] }) ?? [];
+  let ctRelString = ctRel && ctRel.length === 2 ? ctRel.join("/") : "BTC/TWD";
   try {
     const { data } = await getLatestPrice();
-    price = data ? data[`${cur}/${base}`].last_price : "0";
+    price =
+      data && data[`${ctRelString}`].last_price
+        ? data[`${ctRelString}`].last_price
+        : "0";
   } catch (err) {
     console.log(err);
   }
   return {
     props: {
       price,
-      cur,
-      base,
+      ctRelString,
     },
   };
 };

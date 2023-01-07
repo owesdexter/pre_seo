@@ -2,13 +2,11 @@
   "name": "ace-pre",
   "version": "0.1.0",
   "private": true,
-  "main": "function.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "yarn build && cross-env NODE_ENV=production firebase deploy --only hosting,functions"
+    "lint": "next lint"
   },
   "dependencies": {
     "@next/font": "13.1.1",
@@ -22,8 +20,6 @@
     "dayjs": "^1.11.7",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
-    "firebase-admin": "^11.4.1",
-    "firebase-functions": "^4.1.1",
     "immer": "^9.0.17",
     "next": "13.1.1",
     "qs": "^6.11.0",
