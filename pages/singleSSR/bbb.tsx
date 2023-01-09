@@ -1,18 +1,19 @@
+import Head from "next/head";
 import { getLatestPrice } from "@/api";
 import { GetServerSideProps } from "next";
 import CommonHead from "@/components/layout/head";
 
 type Props = {
   price: string;
-  ctRel: string;
+  ctRelString: string;
 };
 
-export default function CtRel({ ctRel, price }: Props) {
-  const title = `${ctRel} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
+export default function CtRel({ ctRelString, price }: Props) {
+  const title = `${ctRelString} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
 
   return (
     <>
-      <CommonHead title={title} description={title}>
+      <CommonHead title={title} description={title} ctRelStr={ctRelString}>
         <>
           <meta
             name="description"
@@ -22,7 +23,6 @@ export default function CtRel({ ctRel, price }: Props) {
         </>
       </CommonHead>
       <main className="main">
-        HIHI
         <h1>{title}</h1>
       </main>
     </>
@@ -30,15 +30,15 @@ export default function CtRel({ ctRel, price }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  console.log(params);
   let price = "0";
-  const { ctRel } = (params as { ctRel: string }) ?? "BTC_TWD";
-  let ctRelKey = ctRel ? ctRel.replace("_", "/") : "BTC/TWD";
+  //   const { ctRel } = (params as { ctRel: string[] }) ?? [];
+  let ctRelString = `BNB/TWD`;
+  console.log(" ----- SSR BBB render -----");
   try {
     const { data } = await getLatestPrice();
     price =
-      data && data[`${ctRelKey}`]?.last_price
-        ? data[`${ctRelKey}`].last_price
+      data && data[ctRelString]?.last_price
+        ? data[ctRelString].last_price
         : "0";
   } catch (err) {
     console.log(err);
@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
       price,
-      ctRel: "HIHI",
+      ctRelString,
     },
   };
 };

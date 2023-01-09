@@ -3,11 +3,12 @@ import NextHead from "next/head";
 
 type TPropType = {
   title?: string;
+  ctRelStr?: string;
   description?: string;
   children?: ReactElement;
 };
 
-const Head = ({ title, description, children }: TPropType) => {
+const Head = ({ title, description, ctRelStr, children }: TPropType) => {
   const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
   return (
     <NextHead>
@@ -18,7 +19,12 @@ const Head = ({ title, description, children }: TPropType) => {
         name="google-site-verification"
         content={`${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`}
       />
-      <link rel="canonical" href={process.env.NEXT_PUBLIC_HOST} />
+      <link
+        rel="canonical"
+        href={`${process.env.NEXT_PUBLIC_HOST}${`${
+          ctRelStr ? `/trade/${ctRelStr}` : ""
+        }`}`}
+      />
       {children}
     </NextHead>
   );
