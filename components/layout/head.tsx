@@ -5,10 +5,17 @@ type TPropType = {
   title?: string;
   ctRelStr?: string;
   description?: string;
+  reWriteCanonical?: string;
   children?: ReactElement;
 };
 
-const Head = ({ title, description, ctRelStr, children }: TPropType) => {
+const Head = ({
+  title,
+  description,
+  ctRelStr,
+  reWriteCanonical,
+  children,
+}: TPropType) => {
   const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
   return (
     <NextHead>
@@ -19,12 +26,16 @@ const Head = ({ title, description, ctRelStr, children }: TPropType) => {
         name="google-site-verification"
         content={`${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`}
       />
-      <link
-        rel="canonical"
-        href={`${process.env.NEXT_PUBLIC_HOST}${`${
-          ctRelStr ? `/trade/${ctRelStr}` : ""
-        }`}`}
-      />
+      {reWriteCanonical ? (
+        <link rel="canonical" href={reWriteCanonical} />
+      ) : (
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_HOST}${`${
+            ctRelStr ? `/trade/${ctRelStr}` : ""
+          }`}`}
+        />
+      )}
       {children}
     </NextHead>
   );

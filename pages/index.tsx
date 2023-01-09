@@ -15,9 +15,9 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
       <main className="title">
         <h1>{`${process.env.NEXT_PUBLIC_TITLE} 首頁`}</h1>
         <ul>
-          {allCtRelList.map((el) => (
-            <li key={el}>
-              <Link href={`/trade/${el}`}>{el}</Link>
+          {allCtRelList.map((el, idx) => (
+            <li key={el} style={{ listStyle: "none" }}>
+              <Link href={`/trade/${el}`}>{`${idx + 1}. ${el}`}</Link>
             </li>
           ))}
           <li>

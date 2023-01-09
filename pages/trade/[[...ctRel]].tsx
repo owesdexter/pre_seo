@@ -13,15 +13,7 @@ export default function CtRel({ ctRelString, price }: Props) {
 
   return (
     <>
-      <CommonHead title={title} description={title} ctRelStr={ctRelString}>
-        <>
-          <meta
-            name="description"
-            content={`${process.env.NEXT_PUBLIC_TITLE}`}
-          />
-          <title>{title}</title>
-        </>
-      </CommonHead>
+      <CommonHead title={title} description={title} ctRelStr={ctRelString} />
       <main className="main">
         <h1>{title}</h1>
       </main>

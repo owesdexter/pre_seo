@@ -10,18 +10,15 @@ type Props = {
 
 export default function CtRel({ ctRelString, price }: Props) {
   const title = `${ctRelString} | ${price} | ${process.env.NEXT_PUBLIC_TITLE}`;
-
+  const keywords = `dexter owesdextern singleSSR`;
   return (
     <>
-      <CommonHead title={title} description={title} ctRelStr={ctRelString}>
-        <>
-          <meta
-            name="description"
-            content={`${process.env.NEXT_PUBLIC_TITLE}`}
-          />
-          <title>{title}</title>
-        </>
-      </CommonHead>
+      <CommonHead
+        title={title}
+        description={`${ctRelString} ${process.env.NEXT_PUBLIC_TITLE}`}
+        ctRelStr={ctRelString}
+        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/singleSSR/bbb`}
+      />
       <main className="main">
         <h1>{title}</h1>
       </main>
