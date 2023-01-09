@@ -15,12 +15,13 @@ export default function CtRel({ ctRelString, price }: Props) {
     <>
       <CommonHead
         title={title}
-        description={`${ctRelString} ${process.env.NEXT_PUBLIC_TITLE}`}
+        description={title}
         ctRelStr={ctRelString}
         reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/singleSSR/bbb`}
       />
       <main className="main">
         <h1>{title}</h1>
+        <h2>{title}</h2>
       </main>
     </>
   );

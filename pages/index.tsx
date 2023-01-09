@@ -14,6 +14,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
       <CommonHead />
       <main className="title">
         <h1>{`${process.env.NEXT_PUBLIC_TITLE} 首頁`}</h1>
+        <h2>{`BTC USDT Bitcoin BNB`}</h2>
         <ul>
           {allCtRelList.map((el, idx) => (
             <li key={el} style={{ listStyle: "none" }}>

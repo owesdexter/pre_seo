@@ -16,6 +16,7 @@ export default function CtRel({ ctRelString, price }: Props) {
       <CommonHead title={title} description={title} ctRelStr={ctRelString} />
       <main className="main">
         <h1>{title}</h1>
+        <h2>{title}</h2>
       </main>
     </>
   );
@@ -25,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   let price = "0";
   const { ctRel } = (params as { ctRel: string[] }) ?? [];
   let ctRelString = ctRel && ctRel.length === 2 ? ctRel.join("/") : "BTC/TWD";
-  console.log(" ----- SSR render -----");
+  console.log(" ----- SSR render:", params);
   try {
     const { data } = await getLatestPrice();
     price =
