@@ -16,15 +16,16 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <h1>{`${process.env.NEXT_PUBLIC_TITLE} 首頁`}</h1>
         <h2>{`BTC USDT Bitcoin BNB`}</h2>
         <ul>
-          {allCtRelList.map((el, idx) => (
+          {/* {allCtRelList.map((el, idx) => (
             <li key={el} style={{ listStyle: "none" }}>
               <Link href={`/trade/${el}`}>{`${idx + 1}. ${el}`}</Link>
             </li>
-          ))}
+          ))} */}
           <li>
-            <Link href={`/singleSSR/${singleFileSSRList}`}>
-              {singleFileSSRList}
-            </Link>
+            <Link href={`/trade/btc_twd`}>BTC/TWD</Link>
+          </li>
+          <li>
+            <Link href={`/trade/btc_usdt`}>BTC/USDT</Link>
           </li>
         </ul>
       </main>

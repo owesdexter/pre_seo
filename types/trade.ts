@@ -1,5 +1,7 @@
 // Trade Data
 export type TTradeData = {
+  base: string;
+  target: string;
   baseVolume: string;
   lastPrice: string;
   quoteVolume: string;
