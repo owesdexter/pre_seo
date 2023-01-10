@@ -1,3 +1,14 @@
+// Trade Data
+export type TTradeData = {
+  baseVolume: string;
+  lastPrice: string;
+  quoteVolume: string;
+};
+export type TAPITradeData = {
+  base_volume: string;
+  last_price: string;
+  quote_volume: string;
+};
 // 幣
 export type CoinType = {
   currencyId: number | null; //幣種編號
