@@ -30,12 +30,12 @@ export default function CtRel({ tradeData }: Props) {
         <h2 style={{ display: "none" }}>{keywords}</h2>
         <p>
           title:
-          <hr />
+          <br />
           {`${ctRelString} | ${tradeData.lastPrice} | ${process.env.NEXT_PUBLIC_TITLE}`}
         </p>
         <p>
           Description:
-          <hr />
+          <br />
           {`${getDate(
             new Date()
           )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${base}。`}
