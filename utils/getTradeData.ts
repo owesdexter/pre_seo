@@ -1,9 +1,7 @@
 import { TTradeData, TAPITradeData } from "@/types";
 import { getLatestPrice } from "@/api";
 
-export const getTradeDataByParams = async (
-  url: string
-): Promise<TTradeData> => {
+export const getTradeDataByUrl = async (url: string): Promise<TTradeData> => {
   const ctRel = url.split("/trade/")[url.split("/trade/").length - 1];
   let tradeData: TTradeData = {
     base: "BTC",

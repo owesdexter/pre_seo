@@ -3,8 +3,9 @@ import NextHead from "next/head";
 
 type TPropType = {
   title?: string;
-  ctRelStr?: string;
   description?: string;
+  ctRelStr?: string;
+  isDynamic?: boolean;
   reWriteCanonical?: string;
   children?: ReactElement;
 };
@@ -13,6 +14,7 @@ const Head = ({
   title,
   description,
   ctRelStr,
+  isDynamic,
   reWriteCanonical,
   children,
 }: TPropType) => {
@@ -32,7 +34,11 @@ const Head = ({
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_HOST}${`${
-            ctRelStr ? `/trade/${ctRelStr}` : ""
+            ctRelStr
+              ? isDynamic
+                ? `/dynamic/${ctRelStr}`
+                : `/trade/${ctRelStr}`
+              : ""
           }`}`}
         />
       )}

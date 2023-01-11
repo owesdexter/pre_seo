@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { GetServerSideProps } from "next";
-import { getTradeDataByParams } from "@/utils";
+import { getTradeDataByUrl } from "@/utils";
 import SSRLayout from "@/components/layout/ssr";
 
 export default function CtRel() {
@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      tradeData: await getTradeDataByParams(resolvedUrl),
+      tradeData: await getTradeDataByUrl(resolvedUrl),
     },
   };
 };
