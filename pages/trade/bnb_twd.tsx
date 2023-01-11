@@ -1,48 +1,10 @@
+import { ReactElement } from "react";
 import { GetServerSideProps } from "next";
-import { getLatestPrice } from "@/api";
-import { getDate, getTradeDataByParams } from "@/utils";
-import { TTradeData, TAPITradeData } from "@/types";
-import CommonHead from "@/components/layout/head";
+import { getTradeDataByParams } from "@/utils";
+import SSRLayout from "@/components/layout/ssr";
 
-type Props = {
-  tradeData: TTradeData;
-  price: string;
-  ctRelString: string;
-  target: string;
-  base: string;
-};
-
-export default function CtRel({ tradeData }: Props) {
-  const { base, target, lastPrice, baseVolume } = tradeData;
-  const ctRelString = `${target}/${base}`;
-  const keywords = `${target} ${base} ${target.toLowerCase()} ${base.toLowerCase()} 走勢 匯率 換算`;
-  return (
-    <>
-      <CommonHead
-        title={`${ctRelString} | ${tradeData.lastPrice} | ${process.env.NEXT_PUBLIC_TITLE}`}
-        description={`${getDate(
-          new Date()
-        )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${base}。`}
-        ctRelStr={ctRelString}
-      />
-      <main className="main">
-        <h1>{keywords}</h1>
-        <h2 style={{ display: "none" }}>{keywords}</h2>
-        <p>
-          title:
-          <br />
-          {`${ctRelString} | ${tradeData.lastPrice} | ${process.env.NEXT_PUBLIC_TITLE}`}
-        </p>
-        <p>
-          Description:
-          <br />
-          {`${getDate(
-            new Date()
-          )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${base}。`}
-        </p>
-      </main>
-    </>
-  );
+export default function CtRel() {
+  return <></>;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
@@ -53,4 +15,8 @@ export const getServerSideProps: GetServerSideProps = async ({
       tradeData: await getTradeDataByParams(resolvedUrl),
     },
   };
+};
+
+CtRel.getLayout = function getLayout(page: ReactElement) {
+  return <SSRLayout props={{ ...page.props }}>{page}</SSRLayout>;
 };

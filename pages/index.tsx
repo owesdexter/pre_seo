@@ -22,13 +22,13 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
             </li>
           ))} */}
           <li>
-            <Link href={`/trade/btc_twd`}>BTC/TWD</Link>
+            <Link href={`/trade/BTC_TWD`}>BTC/TWD</Link>
           </li>
           <li>
-            <Link href={`/trade/btc_usdt`}>BTC/USDT</Link>
+            <Link href={`/trade/BTC_USDT`}>BTC/USDT</Link>
           </li>
           <li>
-            <Link href={`/trade/btc_usdt`}>BNB/TWD</Link>
+            <Link href={`/trade/BNB_TWD`}>BNB/TWD</Link>
           </li>
         </ul>
       </main>
