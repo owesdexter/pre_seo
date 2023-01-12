@@ -11,19 +11,13 @@ type Props = {
 
 export default function CtRel({ tradeData }: Props) {
   const { target, base } = tradeData;
-  if (window) {
-    console.log(window.location.host);
-    console.log(process.env.HOSTNAME);
-    console.log(window.location.host === process.env.HOSTNAME);
-  }
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (window.location.host === process.env.HOSTNAME) {
-  //       window.location.href = `https://ace.io/trade/${target}/${base}`;
-  //     }
-  //   }, 5000);
-  // }, [target, base]);
+  useEffect(() => {
+    setTimeout(() => {
+      // if (window.location.host === process.env.HOSTNAME) {
+      window.location.replace(`https://ace.io/trade/${target}/${base}`);
+      // }
+    }, 1000);
+  }, [target, base]);
   return <></>;
 }
 

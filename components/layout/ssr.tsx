@@ -24,7 +24,7 @@ export default function SSRLayout({
         title={`${ctRelString} | ${tradeData.lastPrice} | ${process.env.NEXT_PUBLIC_TITLE}`}
         description={`${getDate(
           new Date()
-        )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume} ${target}。ETH 在過去 24 小時內的價格變動為 +5.38%。`}
+        )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume} ${target}。`}
         ctRelStr={ctRelString}
         isDynamic={isDynamic}
       />
@@ -41,7 +41,7 @@ export default function SSRLayout({
           <br />
           {`${getDate(
             new Date()
-          )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${target}。ETH 在過去 24 小時內的價格變動為 +5.38%。`}
+          )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${target}。`}
         </p>
         {children}
       </main>

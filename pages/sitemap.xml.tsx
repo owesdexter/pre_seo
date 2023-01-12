@@ -6,26 +6,26 @@ function generateSiteMap(data: string[]) {
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
         <loc>${process.env.NEXT_PUBLIC_HOST}</loc>
-        <lastmod>2021-01-10</lastmod>
+        <lastmod>2021-01-12</lastmod>
       </url>
       <url>
         <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BNB_TWD</loc>
-        <lastmod>2021-01-10</lastmod>
+        <lastmod>2021-01-12</lastmod>
       </url>
       <url>
         <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BTC_TWD</loc>
-        <lastmod>2021-01-10</lastmod>
+        <lastmod>2021-01-12</lastmod>
       </url>
       <url>
         <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BTC_USDT</loc>
-        <lastmod>2021-01-10</lastmod>
+        <lastmod>2021-01-12</lastmod>
       </url>
      ${data
        .map(
          (el) => `
        <url>
           <loc>${`${process.env.NEXT_PUBLIC_HOST}/dynamic/${el}`}</loc>
-          <lastmod>2021-01-11</lastmod>
+          <lastmod>2021-01-12</lastmod>
        </url>
      `
        )
