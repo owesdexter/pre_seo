@@ -11,11 +11,11 @@ type Props = {
 
 export default function CtRel({ tradeData }: Props) {
   const { target, base } = tradeData;
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.location.href = `${process.env.NEXT_PUBLIC_REDIRECT_HOST}/trade/${target}/${base}`;
-  //   }, 5000);
-  // }, [target, base]);
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+    }, 5000);
+  }, []);
   return <></>;
 }
 

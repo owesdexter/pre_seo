@@ -12,9 +12,8 @@ type TAllCtRel = {
 const Home = ({ allCtRelList }: TAllCtRel) => {
   useEffect(() => {
     setTimeout(() => {
-      // window.location.href = `${process.env.NEXT_PUBLIC_REDIRECT_HOST}`;
       window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
-    }, 1000);
+    }, 5000);
   }, []);
   return (
     <>

@@ -13,11 +13,9 @@ export default function CtRel({ tradeData }: Props) {
   const { target, base } = tradeData;
   useEffect(() => {
     setTimeout(() => {
-      // if (window.location.host === process.env.HOSTNAME) {
-      window.location.replace(`https://ace.io/trade/${target}/${base}`);
-      // }
-    }, 1000);
-  }, [target, base]);
+      window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+    }, 5000);
+  }, []);
   return <></>;
 }
 
