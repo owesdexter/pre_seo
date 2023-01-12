@@ -1,5 +1,6 @@
 import CommonHead from "@/components/layout/head";
 import Link from "next/link";
+import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { getLatestPrice } from "@/api";
 import { ssrPageList } from "@/constant";
@@ -9,10 +10,17 @@ type TAllCtRel = {
 };
 
 const Home = ({ allCtRelList }: TAllCtRel) => {
-  const singleFileSSRList = "bbb";
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.href = `${process.env.NEXT_PUBLIC_REDIRECT_HOST}`;
+  //   }, 5000);
+  // }, []);
   return (
     <>
-      <CommonHead />
+      <CommonHead
+        description="阿德虛擬貨幣交易所提供新台幣購買虛擬貨幣，如比特幣(Bitcoin/BTC)、以太幣(ETH/Ethereum)、USDT(泰達幣)等主流幣種。"
+        keywords=""
+      />
       <main className="title">
         <h1>{`${process.env.NEXT_PUBLIC_TITLE} 首頁`}</h1>
         <h2>{`BTC USDT Bitcoin BNB`}</h2>
@@ -20,7 +28,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <ul>
           {ssrPageList.map((el) => (
             <li key={el}>
-              <Link href={`/trade/${el}`}>{el}</Link>
+              <Link href={`/trade/${el}`}>{el.replace("/", " ")}</Link>
             </li>
           ))}
         </ul>
@@ -29,7 +37,10 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <ul>
           {allCtRelList.map((el, idx) => (
             <li key={el} style={{ listStyle: "none" }}>
-              <Link href={`/dynamic/${el}`}>{`${idx + 1}. ${el}`}</Link>
+              <Link href={`/dynamic/${el}`}>{`${idx + 1}. ${el.replace(
+                "/",
+                " "
+              )}`}</Link>
             </li>
           ))}
         </ul>

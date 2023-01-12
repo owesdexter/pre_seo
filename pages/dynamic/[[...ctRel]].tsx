@@ -1,48 +1,36 @@
 import { GetServerSideProps } from "next";
-import { getLatestPrice } from "@/api";
+import { getTradeDataByParams } from "@/utils";
 import { TTradeData, TAPITradeData } from "@/types";
-import { ReactElement } from "react";
+import { useEffect, ReactElement } from "react";
 import SSRLayout from "@/components/layout/ssr";
 
-export default function CtRel() {
+type Props = {
+  tradeData: TTradeData;
+  children: ReactElement;
+};
+
+export default function CtRel({ tradeData }: Props) {
+  const { target, base } = tradeData;
+  if (window) {
+    console.log(window.location.host);
+    console.log(process.env.HOSTNAME);
+    console.log(window.location.host === process.env.HOSTNAME);
+  }
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (window.location.host === process.env.HOSTNAME) {
+  //       window.location.href = `https://ace.io/trade/${target}/${base}`;
+  //     }
+  //   }, 5000);
+  // }, [target, base]);
   return <></>;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  let tradeData: TTradeData = {
-    base: "BTC",
-    target: "TWD",
-    baseVolume: "0",
-    lastPrice: "0",
-    quoteVolume: "0",
-  };
-
-  const { ctRel } = (params as { ctRel: string[] }) ?? [];
-  const [target, base] =
-    ctRel && ctRel.length === 2
-      ? ctRel.map((el) => el.toUpperCase())
-      : ["BTC", "TWD"];
-
-  try {
-    const { data } = await getLatestPrice();
-    if (data && data[`${target}/${base}`]) {
-      let currentCtRelInfo = data[`${target}/${base}`] as TAPITradeData;
-      tradeData = {
-        base,
-        target,
-        baseVolume: currentCtRelInfo.base_volume,
-        lastPrice: currentCtRelInfo.last_price,
-        quoteVolume: currentCtRelInfo.quote_volume,
-      };
-    }
-  } catch (err) {
-    console.log(err);
-  }
   return {
     props: {
-      tradeData,
-      target,
-      base,
+      tradeData: await getTradeDataByParams(params),
     },
   };
 };

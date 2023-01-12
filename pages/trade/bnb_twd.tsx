@@ -1,9 +1,21 @@
-import { ReactElement } from "react";
+import { useEffect, ReactElement } from "react";
 import { GetServerSideProps } from "next";
 import { getTradeDataByUrl } from "@/utils";
 import SSRLayout from "@/components/layout/ssr";
+import { TTradeData } from "@/types";
 
-export default function CtRel() {
+type Props = {
+  tradeData: TTradeData;
+  children: ReactElement;
+};
+
+export default function CtRel({ tradeData }: Props) {
+  const { target, base } = tradeData;
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.href = `${process.env.NEXT_PUBLIC_REDIRECT_HOST}/trade/${target}/${base}`;
+  //   }, 5000);
+  // }, [target, base]);
   return <></>;
 }
 
