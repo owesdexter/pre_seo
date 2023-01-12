@@ -27,7 +27,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <p>Static Routes</p>
         <ul>
           {ssrPageList.map((el) => (
-            <li key={el}>
+            <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
               <Link href={`/trade/${el.toLowerCase()}`}>
                 {el.replace("/", " ")}
               </Link>
@@ -38,7 +38,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <p>Dynamic Routes</p>
         <ul>
           {allCtRelList.map((el, idx) => (
-            <li key={el} style={{ listStyle: "none" }}>
+            <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
               <Link href={`/dynamic/${el}`}>{`${idx + 1}. ${el.replace(
                 "/",
                 " "
