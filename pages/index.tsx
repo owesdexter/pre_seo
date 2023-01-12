@@ -28,7 +28,9 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <ul>
           {ssrPageList.map((el) => (
             <li key={el}>
-              <Link href={`/trade/${el}`}>{el.replace("/", " ")}</Link>
+              <Link href={`/trade/${el.toLowerCase()}`}>
+                {el.replace("/", " ")}
+              </Link>
             </li>
           ))}
         </ul>
