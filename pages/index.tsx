@@ -10,11 +10,11 @@ type TAllCtRel = {
 };
 
 const Home = ({ allCtRelList }: TAllCtRel) => {
-  useEffect(() => {
-    setTimeout(() => {
-      window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+  //   }, 5000);
+  // }, []);
   return (
     <>
       <CommonHead
