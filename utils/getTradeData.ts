@@ -32,7 +32,7 @@ const getTradeData = async (
 };
 
 export const getTradeDataByUrl = async (url: string): Promise<TTradeData> => {
-  const ctRel = url.split("/trade/")[url.split("/trade/").length - 1];
+  const ctRel = url.split("/static/")[url.split("/static/").length - 1];
   const [target, base] =
     ctRel.split("_").length === 2
       ? ctRel.split("_").map((el) => el.toUpperCase())

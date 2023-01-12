@@ -21,6 +21,10 @@ const Head = ({
   children,
 }: TPropType) => {
   const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
+  const newCtRelStr =
+    ctRelStr && !isDynamic
+      ? ctRelStr.toLowerCase().replace("/", "_")
+      : "btc_twd";
   return (
     <NextHead>
       <title>{title ?? websiteTitle}</title>
@@ -39,8 +43,8 @@ const Head = ({
           href={`${process.env.NEXT_PUBLIC_HOST}${`${
             ctRelStr
               ? isDynamic
-                ? `/dynamic/${ctRelStr}`
-                : `/trade/${ctRelStr}`
+                ? `/trade/${ctRelStr}`
+                : `/static/${newCtRelStr}`
               : ""
           }`}`}
         />

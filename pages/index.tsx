@@ -18,7 +18,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
   return (
     <>
       <CommonHead
-        description="阿德虛擬貨幣交易所提供新台幣購買虛擬貨幣，如比特幣(Bitcoin/BTC)、以太幣(ETH/Ethereum)、USDT(泰達幣)等主流幣種。"
+        description="阿德虛擬貨幣交易所提供新台幣購買虛擬貨幣，如比特幣(Bitcoin/BTC)、以太幣(ETH/Ethereum)、泰達幣/穩定幣(USDT)等主流幣種。"
         keywords=""
       />
       <main className="title">
@@ -28,7 +28,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <ul>
           {ssrPageList.map((el) => (
             <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
-              <Link href={`/trade/${el.toLowerCase()}`}>
+              <Link href={`/static/${el.toLowerCase()}`}>
                 {el.replace("/", " ")}
               </Link>
             </li>
@@ -39,7 +39,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
         <ul>
           {allCtRelList.map((el, idx) => (
             <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
-              <Link href={`/dynamic/${el}`}>{`${idx + 1}. ${el.replace(
+              <Link href={`/trade/${el}`}>{`${idx + 1}. ${el.replace(
                 "/",
                 " "
               )}`}</Link>

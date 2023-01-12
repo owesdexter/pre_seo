@@ -1,31 +1,33 @@
 import { getLatestPrice } from "@/api";
 import { GetServerSideProps } from "next";
+import { getDate } from "@/utils";
+const UPDATE_DATE = getDate(new Date());
 
 function generateSiteMap(data: string[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
         <loc>${process.env.NEXT_PUBLIC_HOST}</loc>
-        <lastmod>2021-01-12</lastmod>
+        <lastmod>${UPDATE_DATE}</lastmod>
       </url>
       <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BNB_TWD</loc>
-        <lastmod>2021-01-12</lastmod>
+        <loc>${process.env.NEXT_PUBLIC_HOST}/static/bnb_twd</loc>
+        <lastmod>${UPDATE_DATE}</lastmod>
       </url>
       <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BTC_TWD</loc>
-        <lastmod>2021-01-12</lastmod>
+        <loc>${process.env.NEXT_PUBLIC_HOST}/static/btc_twd</loc>
+        <lastmod>${UPDATE_DATE}</lastmod>
       </url>
       <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/trade/BTC_USDT</loc>
-        <lastmod>2021-01-12</lastmod>
+        <loc>${process.env.NEXT_PUBLIC_HOST}/static/btc_usdt</loc>
+        <lastmod>${UPDATE_DATE}</lastmod>
       </url>
      ${data
        .map(
          (el) => `
        <url>
-          <loc>${`${process.env.NEXT_PUBLIC_HOST}/dynamic/${el}`}</loc>
-          <lastmod>2021-01-12</lastmod>
+          <loc>${`${process.env.NEXT_PUBLIC_HOST}/trade/${el}`}</loc>
+          <lastmod>${UPDATE_DATE}</lastmod>
        </url>
      `
        )
