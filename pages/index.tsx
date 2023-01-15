@@ -1,20 +1,15 @@
 import CommonHead from "@/components/layout/head";
 import Link from "next/link";
-import { useEffect } from "react";
+import { uniq } from "ramda";
 import { GetServerSideProps } from "next";
 import { getLatestPrice } from "@/api";
-import { ssrPageList } from "@/constant";
+import { hotCtRel } from "@/constant";
 
 type TAllCtRel = {
   allCtRelList: string[];
 };
 
 const Home = ({ allCtRelList }: TAllCtRel) => {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
-  //   }, 5000);
-  // }, []);
   return (
     <>
       <CommonHead
@@ -24,18 +19,6 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
       <main className="title">
         <h1>{`${process.env.NEXT_PUBLIC_TITLE} 首頁`}</h1>
         <h2>{`BTC USDT Bitcoin BNB`}</h2>
-        <p>Static Routes</p>
-        <ul>
-          {ssrPageList.map((el) => (
-            <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
-              <Link href={`/static/${el.toLowerCase()}`}>
-                {el.replace("/", " ")}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <br />
-        <p>Dynamic Routes</p>
         <ul>
           {allCtRelList.map((el, idx) => (
             <li key={el} style={{ listStyle: "none", marginBottom: "12px" }}>
@@ -53,9 +36,10 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   let allCtRelList: string[] = [];
+
   try {
     const { data } = await getLatestPrice();
-    allCtRelList = Object.keys(data);
+    allCtRelList = uniq(hotCtRel.concat(Object.keys(data) ?? []));
   } catch (err) {
     console.log(err);
   }
