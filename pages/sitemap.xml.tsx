@@ -10,18 +10,6 @@ function generateSiteMap(data: string[]) {
         <loc>${process.env.NEXT_PUBLIC_HOST}</loc>
         <lastmod>${UPDATE_DATE}</lastmod>
       </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/static/bnb_twd</loc>
-        <lastmod>${UPDATE_DATE}</lastmod>
-      </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/static/btc_twd</loc>
-        <lastmod>${UPDATE_DATE}</lastmod>
-      </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_HOST}/static/btc_usdt</loc>
-        <lastmod>${UPDATE_DATE}</lastmod>
-      </url>
      ${data
        .map(
          (el) => `
