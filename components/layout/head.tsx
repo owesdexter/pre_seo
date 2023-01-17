@@ -6,7 +6,6 @@ type TPropType = {
   description?: string;
   keywords?: string;
   ctRelStr?: string;
-  isDynamic?: boolean;
   reWriteCanonical?: string;
   children?: ReactElement;
 };
@@ -16,15 +15,13 @@ const Head = ({
   description,
   keywords,
   ctRelStr,
-  isDynamic,
   reWriteCanonical,
   children,
 }: TPropType) => {
   const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
-  const newCtRelStr =
-    ctRelStr && !isDynamic
-      ? ctRelStr.toLowerCase().replace("/", "_")
-      : "btc_twd";
+  const newCtRelStr = ctRelStr
+    ? ctRelStr.toLowerCase().replace("/", "_")
+    : "btc_twd";
   return (
     <NextHead>
       <title>{title ?? websiteTitle}</title>
@@ -41,11 +38,7 @@ const Head = ({
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_HOST}${`${
-            ctRelStr
-              ? isDynamic
-                ? `/trade/${ctRelStr}`
-                : `/static/${newCtRelStr}`
-              : ""
+            ctRelStr ? `/trade/${ctRelStr}` : ""
           }`}`}
         />
       )}

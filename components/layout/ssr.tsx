@@ -6,15 +6,11 @@ import CommonHead from "@/components/layout/head";
 type Props = {
   props: {
     tradeData: TTradeData;
-    isDynamic?: boolean;
   };
   children: ReactElement;
 };
 
-export default function SSRLayout({
-  props: { tradeData, isDynamic },
-  children,
-}: Props) {
+export default function SSRLayout({ props: { tradeData }, children }: Props) {
   const { base, target, lastPrice, baseVolume, quoteVolume } = tradeData;
   const ctRelString = `${target}/${base}`;
   const keywords = `${target} ${base} ${target.toLowerCase()} ${base.toLowerCase()} 走勢 匯率 換算`;
@@ -26,12 +22,11 @@ export default function SSRLayout({
           new Date()
         )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume} ${target}。`}
         ctRelStr={ctRelString}
-        isDynamic={isDynamic}
       />
       <main className="main">
         <h1>{keywords}</h1>
         <h2 style={{ display: "none" }}>{keywords}</h2>
-        <p>
+        {/* <p>
           title:
           <br />
           {`${ctRelString} | ${tradeData.lastPrice} | ${process.env.NEXT_PUBLIC_TITLE}`}
@@ -42,7 +37,7 @@ export default function SSRLayout({
           {`${getDate(
             new Date()
           )} 今天 ${target} 的即時價格是每 ${ctRelString} $ ${lastPrice}，24 小時交易量為 ${baseVolume}${target}。`}
-        </p>
+        </p> */}
         {children}
       </main>
     </>

@@ -1,0 +1,23 @@
+$black: #1e1e1f;
+html {
+  background-color: $black;
+  body {
+    margin: 0;
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.bg-black {
+  background-color: $black;
+  width: 100%;
+  height: 100%;
+}
+
+.info-list {
+  display: flex;
+  justify-content: space-between;
+}
