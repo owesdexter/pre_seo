@@ -18,6 +18,9 @@ li {
 }
 
 .info-list {
-  display: flex;
-  justify-content: space-between;
+  width: 300px;
+  .info-list-item {
+    display: flex;
+    justify-content: space-between;
+  }
 }

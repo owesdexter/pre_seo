@@ -4,11 +4,13 @@ export type TTradeData = {
   target: string;
   baseVolume: string;
   lastPrice: string;
+  changeRate: string;
   quoteVolume: string;
 };
 export type TAPITradeData = {
   base_volume: string;
   last_price: string;
+  change_rate: string;
   quote_volume: string;
 };
 // 幣

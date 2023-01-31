@@ -12,7 +12,9 @@ type TAllCtRel = {
 
 const Home = ({ allCtRelList }: TAllCtRel) => {
   // useEffect(() => {
-  //   window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+  //   if (process.env.NEXT_PUBLIC_ENV !== "dev") {
+  //     window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+  //   }
   // }, []);
   return (
     <>

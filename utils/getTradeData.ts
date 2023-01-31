@@ -1,17 +1,19 @@
 import { ParsedUrlQuery } from "querystring";
 import { TTradeData, TAPITradeData } from "@/types";
 import { getLatestPrice } from "@/api";
+import { UNKNOWN } from "@/constant";
 
 const getTradeData = async (
   target: string,
   base: string
 ): Promise<TTradeData> => {
   let tradeData: TTradeData = {
-    base: "BTC",
-    target: "TWD",
-    baseVolume: "0",
-    lastPrice: "0",
-    quoteVolume: "0",
+    base: base,
+    target: target,
+    baseVolume: UNKNOWN,
+    lastPrice: UNKNOWN,
+    changeRate: UNKNOWN,
+    quoteVolume: UNKNOWN,
   };
   try {
     const { data } = await getLatestPrice();
@@ -20,9 +22,10 @@ const getTradeData = async (
       tradeData = {
         base,
         target,
-        baseVolume: currentCtRelInfo.base_volume,
-        lastPrice: currentCtRelInfo.last_price,
-        quoteVolume: currentCtRelInfo.quote_volume,
+        baseVolume: currentCtRelInfo.base_volume ?? UNKNOWN,
+        lastPrice: currentCtRelInfo.last_price ?? UNKNOWN,
+        changeRate: currentCtRelInfo.change_rate ?? UNKNOWN,
+        quoteVolume: currentCtRelInfo.quote_volume ?? UNKNOWN,
       };
     }
   } catch (err) {

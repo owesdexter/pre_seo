@@ -1,3 +1,4 @@
+export const UNKNOWN = "unknown";
 export const siteMetadata = {
   name: `DEXTER`,
   title: `DEXTER 阿德虛擬貨幣交易所 | 台灣首家合法合規虛擬貨幣交易所 | 比特幣買賣`,
