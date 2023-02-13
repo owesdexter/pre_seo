@@ -24,7 +24,7 @@ const getTradeData = async (
         target,
         baseVolume: currentCtRelInfo.base_volume ?? UNKNOWN,
         lastPrice: currentCtRelInfo.last_price ?? UNKNOWN,
-        changeRate: currentCtRelInfo.change_rate ?? UNKNOWN,
+        changeRate: currentCtRelInfo.changeRate ?? UNKNOWN,
         quoteVolume: currentCtRelInfo.quote_volume ?? UNKNOWN,
       };
     }

@@ -11,11 +11,12 @@ type TAllCtRel = {
 };
 
 const Home = ({ allCtRelList }: TAllCtRel) => {
-  // useEffect(() => {
-  //   if (process.env.NEXT_PUBLIC_ENV !== "dev") {
-  //     window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENV !== "dev") {
+      window.location.replace(`${process.env.NEXT_PUBLIC_REDIRECT_HOST}`);
+    }
+  }, []);
+
   return (
     <>
       <CommonHead />

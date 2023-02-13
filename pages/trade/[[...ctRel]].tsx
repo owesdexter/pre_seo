@@ -15,13 +15,15 @@ export default function CtRel({ tradeData }: Props) {
     tradeData;
   const ctRelString = `${target}/${base}`;
   const keywords = `${target} ${base} ${target.toLowerCase()} ${base.toLowerCase()} 走勢 匯率 換算`;
-  // useEffect(() => {
-  //   if (process.env.NEXT_PUBLIC_ENV !== "dev") {
-  //     window.location.replace(
-  //       `${process.env.NEXT_PUBLIC_REDIRECT_HOST}/trade/${target}/${base}`
-  //     );
-  //   }
-  // }, [target, base]);
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENV !== "dev") {
+      window.location.replace(
+        `${process.env.NEXT_PUBLIC_REDIRECT_HOST}/trade/${target}/${base}`
+      );
+    }
+  }, [target, base]);
+
   return (
     <>
       <CommonHead
@@ -50,14 +52,18 @@ export default function CtRel({ tradeData }: Props) {
 
           <table>
             <thead>
-              <th>最新價格</th>
-              <th>漲跌幅</th>
-              <th>{`24hr 交易量 (${target})`}</th>
+              <tr>
+                <th>最新價格</th>
+                <th>漲跌幅</th>
+                <th>{`24hr 交易量 (${target})`}</th>
+              </tr>
             </thead>
             <tbody>
-              <td>{lastPrice}</td>
-              <td>{changeRate}</td>
-              <td>{baseVolume}</td>
+              <tr>
+                <td>{lastPrice}</td>
+                <td>{changeRate}</td>
+                <td>{baseVolume}</td>
+              </tr>
             </tbody>
           </table>
         </div>

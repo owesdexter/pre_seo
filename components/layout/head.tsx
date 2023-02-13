@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import NextHead from "next/head";
+import { siteMetadata } from "@/constant/keywords";
 
 type TPropType = {
   title?: string;
@@ -7,7 +8,9 @@ type TPropType = {
   keywords?: string;
   ctRelStr?: string;
   reWriteCanonical?: string;
+  reDirectUrl?: string;
   children?: ReactElement;
+  useMetaRedirect?: boolean;
 };
 
 const Head = ({
@@ -16,32 +19,35 @@ const Head = ({
   keywords,
   ctRelStr,
   reWriteCanonical,
+  reDirectUrl,
   children,
+  useMetaRedirect,
 }: TPropType) => {
-  const websiteTitle = process.env.NEXT_PUBLIC_TITLE;
-  const newCtRelStr = ctRelStr
-    ? ctRelStr.toLowerCase().replace("/", "_")
-    : "btc_twd";
   return (
     <NextHead>
-      <title>{title ?? websiteTitle}</title>
-      <meta name="description" content={description ?? websiteTitle} />
-      <meta name="keywords" content={keywords ?? websiteTitle} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>{title ?? siteMetadata.title}</title>
       <meta
-        name="google-site-verification"
-        content={`${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`}
+        name="description"
+        content={description ?? siteMetadata.description}
       />
+      <meta name="keywords" content={keywords ?? siteMetadata.keywords} />
+      {process.env.NEXT_PUBLIC_ENV !== "dev" && reDirectUrl ? (
+        <meta httpEquiv="refresh" content={`0; url=${reDirectUrl}`}></meta>
+      ) : null}
+
       {reWriteCanonical ? (
         <link rel="canonical" href={reWriteCanonical} />
-      ) : (
+      ) : ctRelStr ? (
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_HOST}${`${
-            ctRelStr ? `/trade/${ctRelStr}` : ""
-          }`}`}
+          href={`${process.env.NEXT_PUBLIC_HOST}/trade/${ctRelStr}`}
         />
+      ) : (
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_HOST}`} />
       )}
+      {useMetaRedirect && process.env.NEXT_PUBLIC_ENV !== "dev" ? (
+        <meta httpEquiv="refresh" content={`0; url=${reDirectUrl}`}></meta>
+      ) : null}
       {children}
     </NextHead>
   );
