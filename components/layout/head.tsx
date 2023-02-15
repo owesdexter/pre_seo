@@ -31,9 +31,6 @@ const Head = ({
         content={description ?? siteMetadata.description}
       />
       <meta name="keywords" content={keywords ?? siteMetadata.keywords} />
-      {process.env.NEXT_PUBLIC_ENV !== "dev" && reDirectUrl ? (
-        <meta httpEquiv="refresh" content={`0; url=${reDirectUrl}`}></meta>
-      ) : null}
 
       {reWriteCanonical ? (
         <link rel="canonical" href={reWriteCanonical} />
@@ -45,7 +42,9 @@ const Head = ({
       ) : (
         <link rel="canonical" href={`${process.env.NEXT_PUBLIC_HOST}`} />
       )}
-      {useMetaRedirect && process.env.NEXT_PUBLIC_ENV !== "dev" ? (
+      {useMetaRedirect &&
+      reDirectUrl &&
+      process.env.NEXT_PUBLIC_ENV !== "dev" ? (
         <meta httpEquiv="refresh" content={`0; url=${reDirectUrl}`}></meta>
       ) : null}
       {children}

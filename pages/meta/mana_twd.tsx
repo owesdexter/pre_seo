@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getTradeDataByParams } from "@/utils";
 import { TTradeData } from "@/types";
-import { ReactElement, useEffect } from "react";
+import { ReactElement, useMemo } from "react";
 import CommonHead from "@/components/layout/head";
 import { getDate } from "@/utils";
 import { UNKNOWN, DEFAULT_TARGET, DEFAULT_BASE } from "@/constant";
@@ -42,14 +42,6 @@ export default function CtRel({ tradeData }: Props) {
     return redirectUrl;
   };
 
-  useEffect(() => {
-    if (!document) {
-      return;
-    }
-    process.env.NEXT_PUBLIC_ENV !== "dev" &&
-      document.getElementById("redirect-link")?.click();
-  }, []);
-
   return (
     <>
       <CommonHead
@@ -57,8 +49,9 @@ export default function CtRel({ tradeData }: Props) {
         description={metaData.description}
         ctRelStr={ctRelString}
         reDirectUrl={getRedirectUrl()}
-        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/atag/avax-twd`}
+        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/meta/mana-twd`}
         keywords={metaData.keywords}
+        useMetaRedirect={true}
       />
       <main className="main">
         <div
@@ -84,9 +77,6 @@ export default function CtRel({ tradeData }: Props) {
               </tr>
             </tbody>
           </table>
-          <a target="_self" href={getRedirectUrl()} id="redirect-link">
-            {metaData.keywords}
-          </a>
         </div>
       </main>
     </>
@@ -96,7 +86,7 @@ export default function CtRel({ tradeData }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
-      tradeData: await getTradeDataByParams({ ctRel: ["AVAX", "TWD"] }),
+      tradeData: await getTradeDataByParams({ ctRel: ["MANA", "TWD"] }),
     },
   };
 };

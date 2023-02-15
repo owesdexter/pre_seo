@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
 import { getTradeDataByParams } from "@/utils";
 import { TTradeData } from "@/types";
-import { ReactElement, useEffect } from "react";
+import { ReactElement, useMemo } from "react";
 import CommonHead from "@/components/layout/head";
 import { getDate } from "@/utils";
 import { UNKNOWN, DEFAULT_TARGET, DEFAULT_BASE } from "@/constant";
+import RedirectComp from "@/components/redirectComp";
 
 type Props = {
   tradeData: TTradeData;
@@ -51,7 +52,6 @@ export default function CtRel({ tradeData }: Props) {
         reDirectUrl={getRedirectUrl()}
         reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/meta/mana-twd`}
         keywords={metaData.keywords}
-        useMetaRedirect={true}
       />
       <main className="main">
         <div
@@ -77,11 +77,9 @@ export default function CtRel({ tradeData }: Props) {
               </tr>
             </tbody>
           </table>
-          <a target="_self" href={getRedirectUrl()} id="redirect-link">
-            {metaData.keywords}
-          </a>
         </div>
       </main>
+      <RedirectComp url={getRedirectUrl()} />
     </>
   );
 }
@@ -89,7 +87,7 @@ export default function CtRel({ tradeData }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
-      tradeData: await getTradeDataByParams({ ctRel: ["MANA", "TWD"] }),
+      tradeData: await getTradeDataByParams({ ctRel: ["AVAX", "TWD"] }),
     },
   };
 };
