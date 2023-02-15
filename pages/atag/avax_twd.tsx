@@ -50,7 +50,7 @@ export default function CtRel({ tradeData }: Props) {
         description={metaData.description}
         ctRelStr={ctRelString}
         reDirectUrl={getRedirectUrl()}
-        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/meta/mana-twd`}
+        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/meta/avax_twd`}
         keywords={metaData.keywords}
       />
       <main className="main">

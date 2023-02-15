@@ -23,7 +23,7 @@ const Home = ({ allCtRelList }: TAllCtRel) => {
       <CommonHead
         reDirectUrl={process.env.NEXT_PUBLIC_REDIRECT_HOST}
         useMetaRedirect={true}
-        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/acehome`}
+        reWriteCanonical={`${process.env.NEXT_PUBLIC_HOST}/metatohome`}
       />
       <main>
         <div className="content-block-for-seo">
